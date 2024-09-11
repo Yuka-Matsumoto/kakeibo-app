@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "dev": "ts-node-dev --loader ts-node/esm --respawn src/app.ts",
+    "dev": "ts-node-dev --loader ts-node/esm --respawn src/app.ts",
     "build": "tsc",
     "start": "node build/app.js",
     "lint": "eslint 'src/**/*.{js,ts,tsx}'",
