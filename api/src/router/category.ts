@@ -1,8 +1,5 @@
 import { Router, Request, Response } from 'express';
 
-// router は既に定義されていますが、別途インポートしている router を使っていないので不要
-// import router from './category';
-
 const categoryRouter = Router();
 
 // ダミーデータ（データベースの代わり）
@@ -11,9 +8,25 @@ const category = [
   { id: 2, name: '食料品', type: 'expense', description: 'スーパーでの買い物' },
 ];
 
-// カテゴリーの一覧を取得する
+// IDに基づいてカテゴリーを取得する関数
+export const getCategoryById = (id: number) => {
+    return category.find(category => category.id === id) || null;
+  };
+
+// カテゴリーの一覧を取得するエンドポイント
 categoryRouter.get('/', (req: Request, res: Response) => {
   res.json(category);
 });
+
+// 特定のIDのカテゴリーを取得するエンドポイント
+categoryRouter.get('/:id', (req: Request, res: Response) => {
+    const id = parseInt(req.params.id, 10);
+    const category = getCategoryById(id);
+    if (category) {
+      res.json(category);
+    } else {
+      res.status(404).json({ message: 'Category not found' });
+    }
+  });
 
 export default categoryRouter;
