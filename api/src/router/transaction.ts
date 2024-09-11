@@ -23,13 +23,11 @@ const transactions = [
 ];
 
 // 入出金の一覧を取得する
-// http://localhost:4000/transaction
 transactionRouter.get('/', (req: Request, res: Response) => {
   res.json(transactions);
 });
 
 // 特定の入出金の詳細を取得する
-// http://localhost:4000/transaction/1
 transactionRouter.get('/:id', (req: Request, res: Response) => {
   const id = parseInt(req.params.id, 10); // リクエストパラメータからIDを取得し、整数に変換
   const transaction = transactions.find((t) => t.id === id); // IDに一致するトランザクションを検索
