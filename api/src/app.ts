@@ -1,7 +1,7 @@
 import express from 'express';
-import userRouter from './router/user';
-import transactionRouter from './router/transaction';
-import categoryRouter from './router/category';
+import userRouter from './router/user.ts';
+import transactionRouter from './router/transaction.ts';
+import categoryRouter from './router/category.ts';
 
 const app = express();
 const port = 4000;
@@ -12,8 +12,8 @@ app.use('/transaction', transactionRouter);
 app.use('/category', categoryRouter);
 
 app.get('/', (req, res) => {
-    res.send('家計簿アプリ');
-  });
+  res.send('家計簿アプリ');
+});
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

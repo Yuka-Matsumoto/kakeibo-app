@@ -1,19 +1,19 @@
-
 import { Router, Request, Response } from 'express';
-import router from './category';
+
+// router は既に定義されていますが、別途インポートしている router を使っていないので不要
+// import router from './category';
 
 const categoryRouter = Router();
 
 // ダミーデータ（データベースの代わり）
-let category = [
-    { id: 1, name: '給料', type: 'income', description: '月給' },
-    { id: 2, name: '食料品', type: 'expense', description: 'スーパーでの買い物' }
+const category = [
+  { id: 1, name: '給料', type: 'income', description: '月給' },
+  { id: 2, name: '食料品', type: 'expense', description: 'スーパーでの買い物' },
 ];
 
 // カテゴリーの一覧を取得する
 categoryRouter.get('/', (req: Request, res: Response) => {
-    res.json(category);
+  res.json(category);
 });
 
 export default categoryRouter;
-
