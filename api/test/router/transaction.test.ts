@@ -32,6 +32,13 @@ describe('Transaction API', () => {
     ]); // トランザクションの内容を確認
   });
 
+    // 異常系: 存在しないIDのトランザクションを取得
+    it('should return 404 if the transaction is not found', async () => {
+      const response = await request(app).get('/transactions/999');
+      expect(response.status).toBe(404); // ステータスコードが404であることを確認
+      expect(response.body).toEqual({ error: 'Transaction not found' }); // エラーメッセージのプロパティを修正
+  });
+     
   // 正常系: 特定のトランザクションをIDで取得
   it('should return a specific transaction by ID', async () => {
     const response = await request(app).get('/transactions/1');
