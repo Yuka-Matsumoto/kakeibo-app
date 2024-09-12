@@ -1,4 +1,4 @@
-### kakeibo_next 設計書
+### 家計簿アプリ 設計書
 
 ## APIが提供するリソース一覧
 ・入出金
@@ -106,15 +106,28 @@ Section4-1/
 │   │   │   ├── transaction.ts
 │   │   │   └── user.ts
 │   │   ├── app.ts
-│　 ├── .env
-│　 ├── .eslintrc.json
-│　 ├── .prettierrc
-│　 ├── Dockerfile
-│　 ├── package-lock.json
-│　 ├── package.json
-│　 ├── settings.json
-│　 ├── tsconfig.json
+│   ├── test/router/
+│   │   ├── category.test.ts
+│   │   ├── transaction.test.ts
+│   │   ├── user.test.ts
+│   ├── .env
+│   ├── .eslintrc.json
+│   ├── .prettierrc
+│   ├── Dockerfile
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── settings.json
+│   ├── tsconfig.json
 ├── compose.yaml
 ├── design.md
+
+.env: 環境変数を定義するファイルです。APIキーやデータベース接続文字列など、開発環境ごとに異なる設定をここで定義します。
+.eslintrc.json: JavaScript/TypeScriptのコードスタイルを統一するためのESLint設定ファイルです。
+.prettierrc: Prettierを使用してコードの整形ルールを定義します。
+Dockerfile: アプリケーションをコンテナ化するためのDockerの設定ファイルです。
+package.json: Node.jsプロジェクトの依存関係やスクリプトを管理するファイルです。
+tsconfig.json: TypeScriptのコンパイル設定を定義するファイルです。
+compose.yaml: Docker Composeを使用する場合の設定ファイル。アプリケーションをマルチコンテナ環境で動かす際に使います。
+design.md: アプリケーションの設計や仕様に関するドキュメントが書かれていると思われます。
 
 
