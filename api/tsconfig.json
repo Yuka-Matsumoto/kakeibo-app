@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "es6",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "commonjs",
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
@@ -9,10 +9,10 @@
     "skipLibCheck": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/*"]
     },
     "noEmit": true,
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"]
 }

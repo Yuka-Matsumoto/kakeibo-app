@@ -1,6 +1,6 @@
 import request from 'supertest';
 import express from 'express';
-import userRouter from '../../src/router/user';  // userRouterをインポート
+import userRouter from '../../src/router/user'; // userRouterをインポート
 
 // Expressアプリケーションをセットアップ
 const app = express();

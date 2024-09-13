@@ -1,6 +1,9 @@
 import request from 'supertest';
 import express from 'express';
-import categoryRouter, { getCategoryById, categories } from '../../src/router/category';
+import categoryRouter, {
+  getCategoryById,
+  categories,
+} from '../../src/router/category';
 
 // Expressアプリケーションをセットアップ
 const app = express();
@@ -9,13 +12,18 @@ app.use('/categories', categoryRouter);
 
 describe('getCategoryById', () => {
   // テストが始まる前に categories を初期状態に戻す
-    beforeEach(() => {
-      categories.length = 0;
-      categories.push(
-        { id: 1, name: '給料', type: 'income', description: '月給' },
-        { id: 2, name: '食料品', type: 'expense', description: 'スーパーでの買い物' }
-      );
-    });
+  beforeEach(() => {
+    categories.length = 0;
+    categories.push(
+      { id: 1, name: '給料', type: 'income', description: '月給' },
+      {
+        id: 2,
+        name: '食料品',
+        type: 'expense',
+        description: 'スーパーでの買い物',
+      },
+    );
+  });
 
   // 正常系: IDに基づいて特定のカテゴリーを取得
   it('should return a specific category by ID', async () => {
@@ -58,7 +66,9 @@ describe('getCategoryById', () => {
       name: '旅行',
     };
 
-    const response = await request(app).post('/categories').send(incompleteCategory);
+    const response = await request(app)
+      .post('/categories')
+      .send(incompleteCategory);
     expect(response.status).toBe(400);
     expect(response.body).toEqual({ message: 'Missing required fields' });
   });
@@ -71,7 +81,9 @@ describe('getCategoryById', () => {
       description: '月給の増額',
     };
 
-    const response = await request(app).put('/categories/1').send(updatedCategory);
+    const response = await request(app)
+      .put('/categories/1')
+      .send(updatedCategory);
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       id: 1,
@@ -81,13 +93,11 @@ describe('getCategoryById', () => {
 
   // 異常系: 存在しないカテゴリーの更新
   it('should return 404 if updating a non-existent category', async () => {
-    const response = await request(app)
-      .put('/categories/999')
-      .send({
-        name: '旅行',
-        type: 'expense',
-        description: '出張費',
-      });
+    const response = await request(app).put('/categories/999').send({
+      name: '旅行',
+      type: 'expense',
+      description: '出張費',
+    });
     expect(response.status).toBe(404);
     expect(response.body).toEqual({ message: 'Category not found' });
   });
@@ -131,6 +141,6 @@ describe('getCategoryById', () => {
 
   // 異常系: 無効な型（文字列など）を渡した場合
   it('should handle non-number inputs gracefully', () => {
-    expect(getCategoryById(('invalid' as unknown) as number)).toBeNull();
+    expect(getCategoryById('invalid' as unknown as number)).toBeNull();
   });
 });

@@ -1,10 +1,10 @@
 import request from 'supertest';
 import express from 'express';
-import transactionRouter from '../../src/router/transaction';  // transactionRouterをインポート
+import transactionRouter from '../../src/router/transaction'; // transactionRouterをインポート
 
 // Expressアプリケーションをセットアップ
 const app = express();
-app.use(express.json());  // JSONボディをパースするために必要
+app.use(express.json()); // JSONボディをパースするために必要
 app.use('/transactions', transactionRouter);
 
 describe('Transaction API', () => {
@@ -32,13 +32,13 @@ describe('Transaction API', () => {
     ]); // トランザクションの内容を確認
   });
 
-    // 異常系: 存在しないIDのトランザクションを取得
-    it('should return 404 if the transaction is not found', async () => {
-      const response = await request(app).get('/transactions/999');
-      expect(response.status).toBe(404); // ステータスコードが404であることを確認
-      expect(response.body).toEqual({ error: 'Transaction not found' }); // エラーメッセージのプロパティを修正
+  // 異常系: 存在しないIDのトランザクションを取得
+  it('should return 404 if the transaction is not found', async () => {
+    const response = await request(app).get('/transactions/999');
+    expect(response.status).toBe(404); // ステータスコードが404であることを確認
+    expect(response.body).toEqual({ error: 'Transaction not found' }); // エラーメッセージのプロパティを修正
   });
-     
+
   // 正常系: 特定のトランザクションをIDで取得
   it('should return a specific transaction by ID', async () => {
     const response = await request(app).get('/transactions/1');
@@ -113,15 +113,13 @@ describe('Transaction API', () => {
 
   // 異常系: 存在しないトランザクションの更新
   it('should return 404 if updating a non-existent transaction', async () => {
-    const response = await request(app)
-      .put('/transactions/999')
-      .send({
-        date: '2024-09-05',
-        type: 'expense',
-        amount: 1000,
-        category: 'entertainment',
-        description: 'Movie tickets',
-      });
+    const response = await request(app).put('/transactions/999').send({
+      date: '2024-09-05',
+      type: 'expense',
+      amount: 1000,
+      category: 'entertainment',
+      description: 'Movie tickets',
+    });
     expect(response.status).toBe(404); // ステータスコードが404であることを確認
     expect(response.body).toEqual({ error: 'Transaction not found' }); // エラーメッセージを確認
   });
