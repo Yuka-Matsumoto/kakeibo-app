@@ -5,6 +5,6 @@ services:
     build: ./api
     tty: true
     ports:
-      - 4000:4000
+      - 4001:4000
     volumes:
       - ./api:/usr/src/app

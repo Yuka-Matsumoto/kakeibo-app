@@ -1,4 +1,4 @@
-## 家計簿アプリ(Household Accounting App)
+## 家計簿アプリ(kakeibo-app)
 クライアント側からHTTPリクエストを送信して利用できるバックエンドAPIです。
 フロントエンドは含まれていません。
 
